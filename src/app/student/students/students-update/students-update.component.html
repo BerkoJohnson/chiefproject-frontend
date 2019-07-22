@@ -1,0 +1,51 @@
+<form [formGroup]="uploadForm" (ngSubmit)="upload()" class="form">
+  <h4>Upload Student's Photo</h4>
+  <div class="control">
+    <label for="photo" class="label">
+      <span>Photo</span>
+
+      <span
+        class="validation danger"
+        *ngIf="
+          uploadForm.get('photo').invalid &&
+          (uploadForm.get('photo').dirty || uploadForm.get('photo').touched)
+        "
+      >
+        <strong *ngIf="uploadForm.get('photo').errors?.required">
+          Photo is required
+        </strong>
+        <strong *ngIf="uploadForm.get('photo').errors?.imageSize">
+          Size should be 5.0 MB or less
+        </strong>
+        <strong *ngIf="uploadForm.get('photo').errors?.imageType">
+          Only JPEG files are accepted
+        </strong>
+      </span>
+    </label>
+    <input
+      type="file"
+      (change)="previewImage($event)"
+      required
+      id="photo"
+      formControlName="photo"
+      accept="image/*"
+      [ngClass]="{
+        invalid:
+          uploadForm.get('photo').invalid &&
+          (uploadForm.get('photo').dirty || uploadForm.get('photo').touched),
+        valid:
+          uploadForm.get('photo').valid &&
+          (uploadForm.get('photo').dirty || uploadForm.get('photo').touched)
+      }"
+    />
+    <figure *ngIf="imgSrc" class="nphoto">
+      <span>
+        <b>Photo Preview</b><br />
+        <!-- <small>Size: {{ image.size | toMB }}</small> -->
+        <!--        <small>{{image}}</small>-->
+      </span>
+      <img [src]="imgSrc" alt="Student's Photo" />
+    </figure>
+  </div>
+  <button [disabled]="uploadForm.invalid" type="submit">Upload Photo</button>
+</form>

@@ -1,0 +1,41 @@
+<div *ngIf="subject" class="details">
+  <h5 class="title">Viewing Subject's Details</h5>
+
+  <section>
+    <div class="item">
+      <span class="title">Title</span>
+      <span class="value">{{ subject.title }} </span>
+    </div>
+    <div class="item">
+      <span class="title">Teacher Assigned</span>
+      <span class="value">{{ subject.teacher?.name }} </span>
+    </div>
+  </section>
+
+  <div class="table" style="margin-top: 30px;margin-bottom:10px;">
+    <h5 class="title">Current Periods</h5>
+    <table>
+      <thead>
+        <tr>
+          <th>Day</th>
+          <th>Time</th>
+          <th></th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let period of subject?.periods; let i = index">
+          <td>{{ period.day }}</td>
+          <td>{{ period.time }}</td>
+          <td>
+
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  <span class="actions" style="margin-top: 10px;">
+    <a class="yellow" [routerLink]="['update']">Update</a>
+    <a class="blue" [routerLink]="['periods']">Periods</a>
+    <a class="green" [routerLink]="['assign-teacher']">Assign</a>
+  </span>
+</div>

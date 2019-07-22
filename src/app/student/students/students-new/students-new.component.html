@@ -1,0 +1,120 @@
+<form class="form" [formGroup]="newStudentForm" (ngSubmit)="saveStudent()">
+  <div class="control">
+    <label for="name" class="label">
+      <span>Name</span>
+
+      <div class="validation danger" *ngIf="n.invalid && (n.dirty || n.touched)">
+        <div *ngIf="n.errors?.required">
+          Name is required
+        </div>
+      </div>
+    </label>
+    <input type="text" formControlName="name" required id="name" [ngClass]="{'invalid': n.invalid && (n.dirty || n.touched), 'valid': n.valid && (n.dirty || n.touched)}" />
+  </div>
+  <div formArrayName="contacts">
+    <div class="label">
+      <span>Student Contacts</span>
+      <div
+        class="validation danger"
+        *ngIf="
+          newStudentForm.invalid &&
+          (newStudentForm.dirty || newStudentForm.touched) &&
+          (n.touched || n.dirty)
+        "
+      >
+        <div *ngIf="newStudentForm.errors?.contactsLength">
+          Provide at least one (1) telephone number.
+        </div>
+      </div>
+    </div>
+    <button type="button" (click)="addStudentContact()">Add Contact</button>
+
+    <div *ngFor="let control of s_c.controls; let i = index">
+      <div class="control">
+        <label class="label">
+          <span>Contact No: {{ i + 1 }}&nbsp;<a class="link delete" (click)="removeStudentContact(i)">Remove</a></span>
+
+          <div
+            class="validation danger"
+            *ngIf="control.invalid && (control.touched || control.dirty)"
+          >
+            <div *ngIf="control.hasError('required')">
+              Provide a valid telephone
+            </div>
+            <div *ngIf="control.hasError('pattern')">
+              Should contain 10 digit characters
+            </div>
+          </div>
+        </label>
+        <input type="tel" [formControlName]="i" required [ngClass]="{'invalid': control.invalid && (control.dirty || control.touched), 'valid': control.valid && (control.dirty || control.touched)}" />
+      </div>
+    </div>
+  </div>
+  <div formGroupName="guardian">
+    <div class="control">
+      <label for="guardian" class="label">
+        <span>Guardian's Name</span>
+        <div class="validation danger" *ngIf="gn.invalid && (gn.dirty || gn.touched)">
+          <div *ngIf="gn.errors?.required">
+            Guardian's name is required
+          </div>
+        </div>
+      </label>
+      <input type="text" formControlName="name" required id="guardian" [ngClass]="{'invalid': gn.invalid && (gn.dirty || gn.touched), 'valid': gn.valid && (gn.dirty || gn.touched)}" />
+    </div>
+    <div formArrayName="contacts">
+      <div class="label">
+        <span>Guardian's Contacts</span>
+        <div
+          class="validation danger"
+          *ngIf="
+          newStudentForm.invalid &&
+          (newStudentForm.dirty || newStudentForm.touched) &&
+          (gn.touched || gn.dirty)
+        "
+        >
+          <div *ngIf="newStudentForm.errors?.guardianContactsLength">
+            Provide at least one (1) telephone number.
+          </div>
+        </div>
+      </div>
+      <button type="button" (click)="addGuardianContact()">Add Contact</button>
+
+      <div *ngFor="let control of g_c.controls; let i = index">
+        <div class="control">
+          <label class="label">
+            <span>Contact No: {{ i + 1 }}&nbsp;<a class="link delete" (click)="removeGuardianContact(i)">Remove</a></span>
+
+            <div
+              class="validation danger"
+              *ngIf="control.invalid && (control.touched || control.dirty)"
+            >
+              <div *ngIf="control.hasError('required')">
+                Provide a valid telephone
+              </div>
+              <div *ngIf="control.hasError('pattern')">
+                Should contain 10 digit characters
+              </div>
+            </div>
+          </label>
+          <input type="tel" [formControlName]="i" required [ngClass]="{'invalid': control.invalid && (control.dirty || control.touched), 'valid': control.valid && (control.dirty || control.touched)}" />
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="control">
+    <label for="date_registered" class="label">
+      <span>Date Registered</span>
+
+      <div class="validation danger" *ngIf="dg.invalid && (dg.dirty || dg.touched)">
+        <div *ngIf="dg.errors?.required">
+          Registration date is required
+        </div>
+      </div>
+    </label>
+    <input type="date" formControlName="date_registered" required id="date_registered" [ngClass]="{'invalid': dg.invalid && (dg.dirty || dg.touched), 'valid': dg.valid && (dg.dirty || dg.touched)}" />
+  </div>
+
+  <button class="e-btn" type="submit" [disabled]="!newStudentForm.valid">Save Student</button>
+</form>

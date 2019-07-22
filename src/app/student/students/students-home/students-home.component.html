@@ -1,0 +1,29 @@
+<div *ngIf="summary">
+  <div class="table">
+    <h5 class="title">Students Statistics for the month of {{thisMonth}}</h5>
+    <table>
+      <tr>
+        <th>Overall Number of Students</th>
+        <th>Active Students</th>
+      </tr>
+      <tr>
+        <td>{{summary.count}}</td>
+        <td>{{summary.studentsRegistered.length}}</td>
+      </tr>
+    </table>
+  </div>
+  <div class="table">
+    <table style="text-align: center;">
+      <tr>
+        <th style="text-align: center;">S/N</th>
+        <th style="text-align: center;">Student's name</th>
+        <th style="text-align: center;">Number of subjects <br>registered</th>
+      </tr>
+      <tr *ngFor="let student of studentsRegs; let i= index;">
+        <td>{{i + 1}}</td>
+        <td><a [routerLink]="[student._id]">{{student.name}}</a></td>
+        <td >{{ student.numberOfSubjects }}</td>
+      </tr>
+    </table>
+  </div>
+</div>

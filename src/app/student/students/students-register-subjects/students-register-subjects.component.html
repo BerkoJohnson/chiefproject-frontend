@@ -1,0 +1,90 @@
+<div class="details" *ngIf="student">
+  <div class="table">
+    <h5 class="title">Previous Registrations</h5>
+    <table>
+      <thead>
+        <tr>
+          <th>Month</th>
+          <th>Subjects</th>
+          <th>Date</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let registration of student.registrations; index as j">
+          <td>{{ registration.month }}</td>
+          <td>
+            <ul>
+              <li *ngFor="let subject of registration.subjects">
+                {{ subject.title }}
+              </li>
+            </ul>
+          </td>
+          <td>{{ registration.createdAt | date: "fullDate" }}</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+    <hr>
+    <form class="form" [formGroup]="registerSubjectForm" (ngSubmit)="submitSubjects(student._id)">
+      <div class="control">
+        <label class="label" for="month">
+          <span class="name">Month</span>
+
+          <span *ngIf="month.invalid && (month.dirty || month.touched)">
+            <small class="invalid" *ngIf="month.hasError('required')">
+              Select month
+            </small>
+          </span>
+        </label>
+        <select name="month" id="month" formControlName="month"
+                [ngClass]="{'invalid': month.invalid && (month.dirty || month.touched), 'valid': month.valid && (month.dirty || month.touched)}">
+          <option value="">Select month</option>
+          <option [value]="month" *ngFor="let month of months;let i=index">{{month}}</option>
+        </select>
+      </div>
+      <div formArrayName="subjects">
+        <div class="label">
+          <span class="name" style="margin-top: 5px;">Subjects</span>
+          <span
+               *ngIf="(registerSubjectForm.touched || registerSubjectForm.dirty ) && registerSubjectForm.invalid">
+            <span class="invalid" *ngIf="registerSubjectForm.hasError('ubjectLength')">
+              Select at least one subject
+            </span>
+            <span class="invalid" *ngIf="registerSubjectForm.hasError('subjectSelectedAlready')">
+              Change the last selected subject or remove it
+            </span>
+          </span>
+        </div>
+        <button 
+          type="button" 
+          (click)="addSubject()"
+          class="button"
+          [disabled]="(registerSubjectForm.touched || registerSubjectForm.dirty ) && registerSubjectForm.invalid && registerSubjectForm.hasError('subjectSelectedAlready')">
+          Add Subject
+        </button>
+
+        <div class="control" *ngFor="let control of subjects.controls;let i = index;">
+          <label class="label">
+            <span class="name">Subject {{i + 1}} <a class="form-links delete" (click)="removeSubject(i)">Remove</a></span>
+
+            <span *ngIf="control.invalid && (control.dirty || control.touched)">
+              <span class="invalid" *ngIf="control.hasError('required')">
+                Select subject
+              </span>
+              <span class="invalid" *ngIf="control.hasError('addAlready')">
+                Already Selected
+              </span>
+            </span>
+          </label>
+          <select [formControlName]="i" required (change)="selectedSubject(control)"
+                  [ngClass]="{'invalid': control.invalid && (control.dirty || control.touched), 'valid': control.valid && (control.dirty || control.touched)}">
+            <option value="">Select a subject</option>
+            <option [value]="s._id" *ngFor="let s of subjectsList">{{s.title}}</option>
+          </select>
+        </div>
+      </div>
+
+
+      <button class="button" type="submit" [disabled]="!registerSubjectForm.valid" [ngClass]="{'success': registerSubjectForm.valid}">Save Subjects</button>
+    </form>
+  </div>

@@ -1,0 +1,24 @@
+<div *ngIf="(subject$ | async) as subject">
+<form class="form" [formGroup]="assignForm" (ngSubmit)="submitAssignment(subject._id)" *ngIf="(teachers$ | async) as teacherList" style="margin: 20px auto">
+    <h3 class="form-title">Assigning Subject &mdash; <span style="font-style: italic;color: green;font-size: small;">{{subject.title}}</span> to </h3>
+    <div class="control">
+        <label for="teacherID" class="label">
+            <span>Teacher</span>
+
+            <div class="info danger" *ngIf="tID.invalid && (tID.dirty || tID.touched)">
+                <div *ngIf="tID.errors?.required">
+                    Select a teacher
+                </div>
+            </div>
+        </label>
+        <select formControlName="teacherID" required id="teacherID"
+                [ngClass]="{'invalid': tID.invalid && (tID.dirty || tID.touched), 'valid': tID.valid && (tID.dirty || tID.touched)}">
+            <option value="">Select a teacher</option>
+            <option [value]="t._id" *ngFor="let t of teacherList.teachers">{{t.name}}</option>
+        </select>
+    </div>
+
+
+    <button class="e-btn" type="submit" [disabled]="!assignForm.valid">Save Teacher</button>
+</form>
+</div>

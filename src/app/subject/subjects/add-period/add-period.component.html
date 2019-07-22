@@ -1,0 +1,96 @@
+<div *ngIf="periodsDB">
+  <h3 class="form-title">
+    Adding Periods for
+    <strong style="color: green;">{{ subject?.title }}</strong>
+  </h3>
+  <hr />
+  <div class="table">
+    <h5 class="title">Current Periods</h5>
+    <table>
+      <tr>
+        <th>Day</th>
+        <th>Time</th>
+        <th></th>
+      </tr>
+      <tr *ngFor="let period of periodsDB; let i = index">
+        <td>{{ period.day }}</td>
+        <td>{{ period.time }}</td>
+        <td>
+          <a class=""></a>
+          <a
+            *ngIf="auth.decodeToken().role === 'ADMIN'"
+            class="delete-link"
+            (click)="deletePeriod(period)"
+            >&times;</a
+          >
+        </td>
+      </tr>
+    </table>
+  </div>
+</div>
+<hr />
+<form [formGroup]="addPeriodForm" (ngSubmit)="submitPeriod()" class="form">
+  <div formArrayName="periods">
+    <button type="button" (click)="addPeriod()" class="button">
+      Add New Period
+    </button>
+    <div *ngFor="let control of periods.controls; index as i">
+      <div formGroupName="{{ i }}">
+        <fieldset class="form-group">
+          <legend class="legend">
+            Period {{ i + 1 }}
+            <a class="remove" title="remove this" (click)="removePeriod(i)"
+              >&times;</a
+            >
+          </legend>
+          <div class="control">
+            <label for="day" class="label">
+              <span class="name">Day</span>
+              <div
+                class="validation danger"
+                *ngIf="
+                  control.get('day').invalid &&
+                  (control.get('day').touched || control.get('day').dirty)
+                "
+              >
+                <strong *ngIf="control.get('day').hasError('required')">
+                  <small>Must select a day</small>
+                </strong>
+              </div>
+            </label>
+            <select name="day" id="day" formControlName="day">
+              <option value="">Select day</option>
+              <option *ngFor="let d of daysInWeek" [value]="d">{{ d }}</option>
+            </select>
+          </div>
+          <div class="control">
+            <label for="time" class="label">
+              <span>Time</span>
+              <div
+                class="validation danger"
+                *ngIf="
+                  control.get('time').invalid &&
+                  (control.get('time').touched || control.get('time').dirty)
+                "
+              >
+                <strong *ngIf="control.get('time').hasError('required')">
+                  <small>Must enter a time</small>
+                </strong>
+              </div>
+            </label>
+            <input type="time" name="time" id="time" formControlName="time" />
+          </div>
+          <div class="control-inline">
+            <label for="override">
+              <span>Override time settings</span>
+              <input type="checkbox" formControlName="override" id="override" />
+            </label>
+          </div>
+        </fieldset>
+      </div>
+    </div>
+  </div>
+  <button class="button" type="submit" [disabled]="!addPeriodForm.valid">
+    Submit
+  </button>
+</form>

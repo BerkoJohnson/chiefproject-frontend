@@ -1,0 +1,92 @@
+<div class="details" *ngIf="teacher">
+  <h5>Viewing Teacher's Details</h5>
+  <section>
+    <div class="item">
+      <span class="title">Name</span>
+      <span class="value">{{ teacher.name }} </span>
+    </div>
+    <div class="item">
+      <div class="title">
+        Contacts
+      </div>
+      <div class="value">
+        <ul class="contacts">
+          <li *ngFor="let contact of teacher.contacts; index as i">
+            {{ contact }}
+          </li>
+        </ul>
+      </div>
+    </div>
+    <div class="item">
+      <div class="title">
+        Email Address
+      </div>
+      <div class="value">
+        {{ teacher.email}}
+      </div>
+    </div>
+    <!-- <div class="item">
+      <div class="title">
+        Subjects
+      </div>
+      <div class="value">
+        <ul class="contacts">
+          <li *ngFor="let contact of student.guardian.contacts; index as i">
+            {{ contact }}
+          </li>
+        </ul>
+      </div>
+    </div> -->
+  </section>
+  <div class="info-links">
+    <span class="actions" *ngIf="teacher._id">
+      <a class="yellow" [routerLink]="['update']">Update</a>
+      <a
+        class="blue"
+        [routerLink]="['/accounts', 'pay', teacher._id]"
+        style="width: 100px;"
+        >Make Payment</a
+      >
+      <a class="green" [routerLink]="['register']">Register</a>
+    </span>
+  </div>
+
+  <div class="table">
+    <h5 class="title">Subjects</h5>
+    <table>
+      <thead>
+        <tr>
+          <th>Title</th>
+          <th>Periods</th>
+          <!-- <th>Date</th> -->
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let subject of teacher.subjects; index as j">
+          <td>{{ subject.title }}</td>
+         <td>
+            <ul>
+              <li *ngFor="let period of subject.periods">
+                {{ period.day }}s @ {{period.time}}
+              </li>
+            </ul>
+          </td>
+           <!-- <td>{{ registration.createdAt | date: "fullDate" }}</td> -->
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="info-links">
+    <span class="actions" *ngIf="teacher._id">
+      <a class="yellow" [routerLink]="['update']">Update</a>
+      <a
+        class="blue"
+        [routerLink]="['/accounts', 'pay', teacher._id]"
+        style="width: 100px;"
+        >Make Payment</a
+      >
+      <a class="green" [routerLink]="['register']">Register</a>
+    </span>
+  </div>
+</div>

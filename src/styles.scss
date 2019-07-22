@@ -1,0 +1,664 @@
+html,
+body {
+  margin: 0;
+  padding: 0;
+  font-family: 'Roboto';
+  font-weight: 400;
+}
+
+$sidebar-width: 15%;
+$primary-color: #32d127;
+$other-color: complement($primary-color);
+$padding: 0.4rem;
+
+* {
+  box-sizing: border-box;
+}
+
+ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.main-header {
+  background: #333;
+  display: flex;
+  position: fixed;
+  top: 0;
+  left: $sidebar-width;
+  z-index: 1;
+  width: 100%;
+  justify-items: flex-start;
+  align-items: center;
+}
+
+.brand {
+  width: 100%;
+  margin: auto;
+  padding: 6px 10px;
+  background-color: $primary-color;
+}
+
+.brand a {
+  text-decoration: none;
+  color: #fff;
+  font-style: 3rem;
+  text-transform: uppercase;
+  text-align: center;
+}
+
+.brand a:hover {
+  text-shadow: 2px 0px 10px green;
+}
+
+.main-menu {
+  flex: 3;
+  overflow: hidden;
+}
+
+.main-menu li {
+  float: left;
+  text-align: center;
+  font-size: 0.8rem;
+  margin: 0;
+  width: 100px;
+}
+
+.main-menu li a {
+  color: white;
+  display: block;
+  width: 100%;
+  padding: 0.5rem 0.4rem;
+  text-decoration: none;
+  background-color: transparent;
+  text-transform: uppercase;
+}
+
+.main-menu li a:hover {
+  background-color: green;
+  /* color: white; */
+}
+
+.main-menu a.active {
+  background-color: #111;
+  /* color: green; */
+  /* background-color: rgb(12, 88, 12); */
+}
+
+.sticky-sidebar {
+  width: $sidebar-width;
+  background-color: #333;
+  height: 100%;
+  position: fixed;
+  top: 0;
+  overflow: auto;
+  text-align: center;
+}
+
+.sidebar-menu li a {
+  display: block;
+  padding: 10px;
+  font-weight: 400;
+  text-decoration: none;
+  text-transform: uppercase;
+  // color: $other-color;
+  text-align: center;
+  color: darken($primary-color, 20%);
+
+  &:hover {
+    background-color: #111;
+  }
+
+  &.active {
+    color: darken($primary-color, 5%);
+    background-color: #111;
+  }
+}
+
+.advert {
+  color: white;
+  height: 15%;
+}
+
+.account {
+  display: inline-block;
+  flex: 1;
+  margin-left: -325px;
+
+  ul li {
+    display: inline-block;
+  }
+
+  ul li a {
+    display: block;
+  }
+}
+
+.user {
+  // margin-right: 5px;
+  font-size: 0.8rem;
+  text-transform: uppercase;
+  font-weight: 400;
+  color: $primary-color;
+  display: inline-block;
+  padding: 0.5rem 0.4rem;
+  cursor: pointer;
+  /* border-bottom: 2px solid transparent; */
+}
+
+.user:hover {
+  background-color: green;
+  color: white;
+}
+
+.logout-btn {
+  color: red;
+  text-transform: uppercase;
+  // margin-right: 5px;
+  font-size: 0.8rem;
+  padding: 0.5rem 0.4rem;
+  display: inline-block;
+  text-decoration: none;
+  background-color: transparent;
+  font-weight: bold;
+}
+
+.logout-btn:hover {
+  color: #fff;
+  background-color: red;
+  /* text-shadow: 2px 0px 10px red; */
+}
+
+.login-btn {
+  color: white;
+  text-transform: uppercase;
+  margin-right: -125px;
+  width: 100px;
+  text-align: center;
+  font-size: 0.8rem;
+  padding: 0.5rem 0.4rem;
+  display: inline-block;
+  text-decoration: none;
+  background-color: $primary-color;
+}
+
+.login-btn:hover {
+  color: $primary-color;
+  background-color: white;
+  /* text-shadow: 2px 0px 10px red; */
+}
+
+.button {
+  width: 100%;
+  padding: $padding;
+  border: 0;
+  outline: none;
+  margin: 10px auto;
+  // border-radius: 5%;
+
+  &:disabled {
+    background-color: palegreen;
+    color: #444;
+    cursor: not-allowed;
+  }
+}
+
+.danger {
+  color: white;
+  background-color: red;
+  border: 1px solid transparent;
+
+  &:not(:disabled):hover {
+    color: red;
+    background-color: white;
+    border-color: red;
+    cursor: pointer;
+  }
+}
+
+.success {
+  color: white;
+  background-color: green;
+  border: 1px solid transparent;
+
+  &:not(:disabled):hover {
+    color: green;
+    background-color: white;
+    border-color: green;
+    cursor: pointer;
+  }
+}
+
+.user:hover {
+  color: white;
+}
+
+.login {
+  margin: 178px auto;
+  width: 23rem;
+  // height: 11rem;
+  border: 1px solid rgba(97, 97, 97, 0.3);
+
+  &:hover {
+    box-shadow: 1px 1px 2px 0px #444444a3;
+  }
+  // padding: 10px;
+
+  h5 {
+    font-weight: 500;
+    color: $other-color;
+    background-color: #111111;
+    text-align: center;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    margin: 0;
+    line-height: 20px;
+    padding: $padding;
+    border-bottom: 1px solid $other-color;
+  }
+
+  button {
+    width: 100%;
+    margin: 0 auto;
+  }
+}
+
+form {
+  height: inherit;
+  background-color: #333;
+  padding: $padding;
+
+  .control {
+    margin-top: 9px;
+
+    &:last-of-type {
+      margin-bottom: 10px;
+    }
+  }
+
+  .label {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-weight: 300;
+    font-size: 0.9rem;
+    text-transform: uppercase;
+    width: 100%;
+
+    .name {
+      color: rgb(189, 189, 189);
+    }
+
+    .invalid {
+      color: red !important;
+      font-weight: 400;
+    }
+  }
+
+  input[type='text'],
+  input[type='date'],
+  input[type='tel'],
+  input[type='time'],
+  input[type='password'],
+  input[type='email'],
+  input[type='search'],
+  select {
+    color: #111;
+    width: 100%;
+    border: 1px solid transparent;
+    border-radius: 2px;
+    padding: $padding;
+
+    &:focus {
+      border-color: lightblue;
+      box-shadow: 1px 1px 1px inset rgba(97, 97, 97, 0.3);
+    }
+
+    &.invalid {
+      border: 1px solid red !important;
+      color: red !important;
+    }
+
+    &.valid {
+      border: 1px solid green !important;
+      color: green !important;
+    }
+  }
+
+  .form-links {
+    .delete {
+      font-size: 0.8rem;
+      color: red;
+      border-bottom: 1px solid red;
+    }
+  }
+}
+
+/* Various Views*/
+.content {
+  margin-top: 30px;
+  margin-left: $sidebar-width;
+  padding: 7px;
+
+  display: flex;
+  justify-content: space-between;
+  // align-items: center;
+}
+
+.view,
+.route-view {
+  flex: 1;
+  padding: 10px;
+}
+
+/*Styling list*/
+.list {
+  height: inherit;
+}
+.list-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  color: white;
+  padding: $padding;
+  background-color: #555;
+  margin: 3px 0;
+  transition: all 0.2s;
+  text-transform: uppercase;
+
+  .name {
+    font-size: 0.8rem;
+  }
+}
+
+.selectedBg {
+  font-weight: bold;
+  color: #333;
+  background-color: #32d127;
+}
+
+.actions {
+  font-weight: 300;
+  font-size: 0.6rem;
+
+  a {
+    text-decoration: none;
+    display: inline-block;
+    margin: 0 5px;
+    padding: 4px;
+    border-radius: 15px;
+    border: 1px solid transparent;
+    cursor: pointer;
+    width: 60px;
+    text-align: center;
+    text-transform: uppercase;
+  }
+}
+.info-links {
+  margin: 10px auto;
+  width: 100%;
+}
+
+.blue {
+  background-color: blue;
+  color: white;
+
+  &:hover {
+    color: blue;
+    background-color: white;
+    border: 1px solid blue;
+  }
+}
+
+.gray {
+  background-color: gray;
+  color: white;
+
+  &:hover {
+    color: gray;
+    background-color: white;
+    border: 1px solid gray;
+  }
+}
+
+.green {
+  background-color: green;
+  color: white;
+
+  &:hover {
+    color: green;
+    background-color: white;
+    border: 1px solid green;
+  }
+}
+
+.yellow {
+  $color: yellow;
+  background-color: $color;
+  color: black;
+
+  &:hover {
+    color: black;
+    background-color: white;
+    border: 1px solid $color;
+  }
+}
+
+.footer {
+  position: absolute;
+  top: 88%;
+  left: 0;
+  z-index: -1;
+  text-align: center;
+  color: #626262;
+  // background-color: #111;
+  width: 100%;
+  padding: 10px;
+  margin-top: -5px;
+}
+
+// Pagination
+.pagination {
+  margin-top: 20px;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  color: white;
+  font-size: 0.8rem;
+  text-align: center;
+  // padding: 10px;
+
+  .previous,
+  .current,
+  .next {
+    padding: 4px 10px;
+    border-radius: 10px;
+    cursor: pointer;
+    border: 0;
+    border: none;
+    outline: none;
+  }
+
+  .previous {
+    background-color: #4dac12;
+
+    &:disabled {
+      background-color: gray;
+      color: white;
+      cursor: not-allowed;
+    }
+
+    &:not(:disabled):hover {
+      background: complement(#4dac12);
+      color: white;
+    }
+  }
+
+  .current {
+    background-color: #333;
+    color: white;
+
+    &:disabled {
+      background-color: gray;
+      cursor: not-allowed;
+    }
+
+    &:not(:disabled):hover {
+      background: complement(#333);
+    }
+  }
+
+  .next {
+    background-color: #ade723;
+
+    &:disabled {
+      background-color: gray;
+      color: white;
+      cursor: not-allowed;
+    }
+
+    &:not(:disabled):hover {
+      background: complement(#ade723);
+      color: white;
+    }
+  }
+}
+
+// Details -View Student/ Teacher others info
+.details {
+  padding: 0 10px;
+  margin-top: 0;
+
+  h5 {
+    font-weight: 500;
+    color: $primary-color;
+    background-color: #111111;
+    text-align: center;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    margin: 0;
+    line-height: 20px;
+    padding: $padding;
+    border-bottom: 2px solid $primary-color;
+  }
+
+  section {
+    background-color: lighten($color: $primary-color, $amount: 40%);
+    border-top: 0;
+    border-bottom-left-radius: 5px;
+    border-bottom-right-radius: 5px;
+    line-height: 50px;
+  }
+
+  .item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    .title {
+      text-align: right;
+      font-size: 0.8rem;
+      flex: 1;
+      text-transform: uppercase;
+      color: lighten($color: $primary-color, $amount: 10%);
+    }
+
+    .title::after {
+      content: ':';
+      margin-left: 3px;
+    }
+
+    .value {
+      text-align: left;
+      flex: 2;
+      margin-left: 10px;
+      color: #333;
+      text-transform: uppercase;
+
+      ul li {
+        line-height: 15px;
+      }
+    }
+  }
+}
+.table {
+  background-color: #444;
+
+  &:not(:first-of-type) {
+    margin-top: 20px;
+  }
+
+  .title {
+    font-weight: 500;
+    color: #32d127;
+    background-color: #111111;
+    text-align: center;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    margin: 0;
+    line-height: 20px;
+    padding: 0.4rem;
+    border-bottom: 2px solid #32d127;
+  }
+
+  table {
+    border-collapse: collapse;
+    width: 100%;
+    margin-top: 5px;
+
+    tr {
+      border-bottom: 1px solid $primary-color;
+    }
+    th,
+    td {
+      padding: $padding;
+      vertical-align: text-top;
+      font-size: 0.8rem;
+      text-align: center;
+    }
+
+    th {
+      font-weight: 500;
+      text-transform: uppercase;
+      background-color: $primary-color;
+      letter-spacing: 2px;
+    }
+
+    td {
+      color: #eaeaea;
+      font-weight: 300;
+
+      text-transform: uppercase;
+    }
+
+    a {
+      color: #eaeaea;
+      font-weight: 500;
+      text-decoration: none;
+
+      &.delete-link {
+        color: red;
+        font-size: 20px;
+        cursor: pointer;
+      }
+
+
+      &:hover {
+        color: $primary-color;
+      }
+    }
+  }
+}
+
+legend {
+  color: $primary-color;
+  text-transform: uppercase;
+
+  a {
+    &.remove {
+      color: red;
+      cursor: pointer;
+    }
+  }
+}

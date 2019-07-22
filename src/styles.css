@@ -1,0 +1,678 @@
+html,
+body {
+  margin: 0;
+  padding: 0;
+  font-family: "Roboto";
+  font-weight: 400;
+}
+
+* {
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+}
+
+ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.main-header {
+  background: #333;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  position: fixed;
+  top: 0;
+  left: 15%;
+  z-index: 1;
+  width: 100%;
+  justify-items: flex-start;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.brand {
+  width: 100%;
+  margin: auto;
+  padding: 6px 10px;
+  background-color: #32d127;
+}
+
+.brand a {
+  text-decoration: none;
+  color: #fff;
+  font-style: 3rem;
+  text-transform: uppercase;
+  text-align: center;
+}
+
+.brand a:hover {
+  text-shadow: 2px 0px 10px green;
+}
+
+.main-menu {
+  -webkit-box-flex: 3;
+      -ms-flex: 3;
+          flex: 3;
+  overflow: hidden;
+}
+
+.main-menu li {
+  float: left;
+  text-align: center;
+  font-size: 0.8rem;
+  margin: 0;
+  width: 100px;
+}
+
+.main-menu li a {
+  color: white;
+  display: block;
+  width: 100%;
+  padding: 0.5rem 0.4rem;
+  text-decoration: none;
+  background-color: transparent;
+  text-transform: uppercase;
+}
+
+.main-menu li a:hover {
+  background-color: green;
+  /* color: white; */
+}
+
+.main-menu a.active {
+  background-color: #111;
+  /* color: green; */
+  /* background-color: rgb(12, 88, 12); */
+}
+
+.sticky-sidebar {
+  width: 15%;
+  background-color: #333;
+  height: 100%;
+  position: fixed;
+  top: 0;
+  overflow: auto;
+  text-align: center;
+}
+
+.sidebar-menu li a {
+  display: block;
+  padding: 10px;
+  font-weight: 400;
+  text-decoration: none;
+  text-transform: uppercase;
+  text-align: center;
+  color: #1d7b17;
+}
+
+.sidebar-menu li a:hover {
+  background-color: #111;
+}
+
+.sidebar-menu li a.active {
+  color: #2dbc23;
+  background-color: #111;
+}
+
+.advert {
+  color: white;
+  height: 15%;
+}
+
+.account {
+  display: inline-block;
+  -webkit-box-flex: 1;
+      -ms-flex: 1;
+          flex: 1;
+  margin-left: -325px;
+}
+
+.account ul li {
+  display: inline-block;
+}
+
+.account ul li a {
+  display: block;
+}
+
+.user {
+  font-size: 0.8rem;
+  text-transform: uppercase;
+  font-weight: 400;
+  color: #32d127;
+  display: inline-block;
+  padding: 0.5rem 0.4rem;
+  cursor: pointer;
+  /* border-bottom: 2px solid transparent; */
+}
+
+.user:hover {
+  background-color: green;
+  color: white;
+}
+
+.logout-btn {
+  color: red;
+  text-transform: uppercase;
+  font-size: 0.8rem;
+  padding: 0.5rem 0.4rem;
+  display: inline-block;
+  text-decoration: none;
+  background-color: transparent;
+  font-weight: bold;
+}
+
+.logout-btn:hover {
+  color: #fff;
+  background-color: red;
+  /* text-shadow: 2px 0px 10px red; */
+}
+
+.login-btn {
+  color: white;
+  text-transform: uppercase;
+  margin-right: -125px;
+  width: 100px;
+  text-align: center;
+  font-size: 0.8rem;
+  padding: 0.5rem 0.4rem;
+  display: inline-block;
+  text-decoration: none;
+  background-color: #32d127;
+}
+
+.login-btn:hover {
+  color: #32d127;
+  background-color: white;
+  /* text-shadow: 2px 0px 10px red; */
+}
+
+.button {
+  width: 100%;
+  padding: 0.4rem;
+  border: 0;
+  outline: none;
+  margin: 10px auto;
+}
+
+.button:disabled {
+  background-color: palegreen;
+  color: #444;
+  cursor: not-allowed;
+}
+
+.danger {
+  color: white;
+  background-color: red;
+  border: 1px solid transparent;
+}
+
+.danger:not(:disabled):hover {
+  color: red;
+  background-color: white;
+  border-color: red;
+  cursor: pointer;
+}
+
+.success {
+  color: white;
+  background-color: green;
+  border: 1px solid transparent;
+}
+
+.success:not(:disabled):hover {
+  color: green;
+  background-color: white;
+  border-color: green;
+  cursor: pointer;
+}
+
+.user:hover {
+  color: white;
+}
+
+.login {
+  margin: 178px auto;
+  width: 23rem;
+  border: 1px solid rgba(97, 97, 97, 0.3);
+}
+
+.login:hover {
+  -webkit-box-shadow: 1px 1px 2px 0px #444444a3;
+          box-shadow: 1px 1px 2px 0px #444444a3;
+}
+
+.login h5 {
+  font-weight: 500;
+  color: #c627d1;
+  background-color: #111111;
+  text-align: center;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  margin: 0;
+  line-height: 20px;
+  padding: 0.4rem;
+  border-bottom: 1px solid #c627d1;
+}
+
+.login button {
+  width: 100%;
+  margin: 0 auto;
+}
+
+form {
+  height: inherit;
+  background-color: #333;
+  padding: 0.4rem;
+}
+
+form .control {
+  margin-top: 9px;
+}
+
+form .control:last-of-type {
+  margin-bottom: 10px;
+}
+
+form .label {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  font-weight: 300;
+  font-size: 0.9rem;
+  text-transform: uppercase;
+  width: 100%;
+}
+
+form .label .name {
+  color: #bdbdbd;
+}
+
+form .label .invalid {
+  color: red !important;
+  font-weight: 400;
+}
+
+form input[type="text"],
+form input[type="date"],
+form input[type="tel"],
+form input[type="time"],
+form input[type="password"],
+form input[type="email"],
+form input[type="search"],
+form select {
+  color: #111;
+  width: 100%;
+  border: 1px solid transparent;
+  border-radius: 2px;
+  padding: 0.4rem;
+}
+
+form input[type="text"]:focus,
+form input[type="date"]:focus,
+form input[type="tel"]:focus,
+form input[type="time"]:focus,
+form input[type="password"]:focus,
+form input[type="email"]:focus,
+form input[type="search"]:focus,
+form select:focus {
+  border-color: lightblue;
+  -webkit-box-shadow: 1px 1px 1px inset rgba(97, 97, 97, 0.3);
+          box-shadow: 1px 1px 1px inset rgba(97, 97, 97, 0.3);
+}
+
+form input[type="text"].invalid,
+form input[type="date"].invalid,
+form input[type="tel"].invalid,
+form input[type="time"].invalid,
+form input[type="password"].invalid,
+form input[type="email"].invalid,
+form input[type="search"].invalid,
+form select.invalid {
+  border: 1px solid red !important;
+  color: red !important;
+}
+
+form input[type="text"].valid,
+form input[type="date"].valid,
+form input[type="tel"].valid,
+form input[type="time"].valid,
+form input[type="password"].valid,
+form input[type="email"].valid,
+form input[type="search"].valid,
+form select.valid {
+  border: 1px solid green !important;
+  color: green !important;
+}
+
+form .form-links .delete {
+  font-size: 0.8rem;
+  color: red;
+  border-bottom: 1px solid red;
+}
+
+/* Various Views*/
+.content {
+  margin-top: 30px;
+  margin-left: 15%;
+  padding: 7px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+}
+
+.view,
+.route-view {
+  -webkit-box-flex: 1;
+      -ms-flex: 1;
+          flex: 1;
+  padding: 10px;
+}
+
+/*Styling list*/
+.list {
+  height: inherit;
+}
+
+.list-item {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  color: white;
+  padding: 0.4rem;
+  background-color: #555;
+  margin: 3px 0;
+  -webkit-transition: all 0.2s;
+  transition: all 0.2s;
+}
+
+.list-item .name {
+  font-size: 0.8rem;
+}
+
+.selectedBg {
+  font-weight: bold;
+  color: #333;
+  background-color: #32d127;
+}
+
+.actions {
+  font-weight: 300;
+  font-size: 0.6rem;
+}
+
+.actions a {
+  text-decoration: none;
+  display: inline-block;
+  margin: 0 5px;
+  padding: 4px;
+  border-radius: 15px;
+  border: 1px solid transparent;
+  cursor: pointer;
+  width: 60px;
+  text-align: center;
+  text-transform: uppercase;
+}
+
+.info-links {
+  margin: 10px auto;
+  width: 100%;
+}
+
+.blue {
+  background-color: blue;
+  color: white;
+}
+
+.blue:hover {
+  color: blue;
+  background-color: white;
+  border: 1px solid blue;
+}
+
+.gray {
+  background-color: gray;
+  color: white;
+}
+
+.gray:hover {
+  color: gray;
+  background-color: white;
+  border: 1px solid gray;
+}
+
+.green {
+  background-color: green;
+  color: white;
+}
+
+.green:hover {
+  color: green;
+  background-color: white;
+  border: 1px solid green;
+}
+
+.yellow {
+  background-color: yellow;
+  color: black;
+}
+
+.yellow:hover {
+  color: black;
+  background-color: white;
+  border: 1px solid yellow;
+}
+
+.footer {
+  position: absolute;
+  top: 88%;
+  left: 0;
+  z-index: -1;
+  text-align: center;
+  color: #626262;
+  width: 100%;
+  padding: 10px;
+  margin-top: -5px;
+}
+
+.pagination {
+  margin-top: 20px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-pack: distribute;
+      justify-content: space-around;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  color: white;
+  font-size: 0.8rem;
+  text-align: center;
+}
+
+.pagination .previous,
+.pagination .current,
+.pagination .next {
+  padding: 4px 10px;
+  border-radius: 10px;
+  cursor: pointer;
+  border: 0;
+  border: none;
+  outline: none;
+}
+
+.pagination .previous {
+  background-color: #4dac12;
+}
+
+.pagination .previous:disabled {
+  background-color: gray;
+  color: white;
+  cursor: not-allowed;
+}
+
+.pagination .previous:not(:disabled):hover {
+  background: #7112ac;
+  color: white;
+}
+
+.pagination .current {
+  background-color: #333;
+  color: white;
+}
+
+.pagination .current:disabled {
+  background-color: gray;
+  cursor: not-allowed;
+}
+
+.pagination .current:not(:disabled):hover {
+  background: #333333;
+}
+
+.pagination .next {
+  background-color: #ade723;
+}
+
+.pagination .next:disabled {
+  background-color: gray;
+  color: white;
+  cursor: not-allowed;
+}
+
+.pagination .next:not(:disabled):hover {
+  background: #5d23e7;
+  color: white;
+}
+
+.details {
+  padding: 0 10px;
+  margin-top: 0;
+}
+
+.details h5 {
+  font-weight: 500;
+  color: #32d127;
+  background-color: #111111;
+  text-align: center;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  margin: 0;
+  line-height: 20px;
+  padding: 0.4rem;
+  border-bottom: 2px solid #32d127;
+}
+
+.details section {
+  background-color: #b3b3b3;
+  border-top: 0;
+  border-bottom-left-radius: 5px;
+  border-bottom-right-radius: 5px;
+  line-height: 50px;
+}
+
+.details .item {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.details .item .title {
+  text-align: right;
+  font-size: 0.8rem;
+  -webkit-box-flex: 1;
+      -ms-flex: 1;
+          flex: 1;
+  text-transform: uppercase;
+  color: white;
+}
+
+.details .item .title::after {
+  content: ":";
+  margin-left: 3px;
+}
+
+.details .item .value {
+  text-align: left;
+  -webkit-box-flex: 2;
+      -ms-flex: 2;
+          flex: 2;
+  margin-left: 10px;
+  color: #333;
+  text-transform: uppercase;
+}
+
+.details .item .value ul li {
+  line-height: 15px;
+}
+
+.table {
+  margin-top: 20px;
+  background-color: #333;
+}
+
+.table .title {
+  font-weight: 500;
+  color: #32d127;
+  background-color: #111111;
+  text-align: center;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  margin: 0;
+  line-height: 20px;
+  padding: 0.4rem;
+  border-bottom: 2px solid #32d127;
+}
+
+.table table {
+  border-collapse: collapse;
+  width: 100%;
+  margin-top: 5px;
+  border: 2px solid #ddd;
+}
+
+.table table tr {
+  border-bottom: 1px solid #32d127;
+}
+
+.table table th,
+.table table td {
+  padding: 0.4rem;
+  vertical-align: text-top;
+}
+
+.table table th {
+  font-weight: 400;
+  text-align: left;
+  background-color: #32d127;
+}
+
+.table table td {
+  color: #32d127;
+  font-weight: 300;
+}
+/*# sourceMappingURL=styles.css.map */

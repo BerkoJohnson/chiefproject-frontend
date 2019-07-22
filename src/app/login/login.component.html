@@ -1,0 +1,58 @@
+<div class="login">
+  <h5>Login with your Eden credentials</h5>
+  <!-- <strong *ngIf=""><small>Invalid credentials sent</small></strong> -->
+  <form [formGroup]="loginForm" (ngSubmit)="onSubmit()" class="form">
+    <div class="control">
+      <label for="email" class="label">
+        <span class="name">Email</span>
+        <span *ngIf="email.invalid && (email.touched || email.dirty)">
+          <small class="invalid" *ngIf="email.hasError('required')"
+            >Email is required</small
+          >
+          <small class="invalid" *ngIf="email.hasError('email')"
+            >Provide a valid email</small
+          >
+          <small class="invalid" *ngIf="email.hasError('emailNotFound')"
+            >Email not found</small
+          >
+        </span>
+      </label>
+      <input
+        type="email"
+        formControlName="email"
+        id="email"
+        [ngClass]="{
+          invalid: email.invalid && (email.dirty || email.touched),
+          valid: email.valid && (email.dirty || email.touched)
+        }"
+      />
+    </div>
+    <div class="control">
+      <label for="password" class="label">
+        <span class="name">Password</span>
+        <span *ngIf="password.invalid && (password.touched || password.dirty)">
+          <small class="invalid" *ngIf="password.hasError('required')"
+            >Password is required</small
+          >
+          <small class="invalid" *ngIf="password.hasError('PasswordMismatch')"
+            >Password is wrong</small
+          >
+        </span>
+      </label>
+      <input
+        type="password"
+        formControlName="password"
+        id="password"
+        [ngClass]="{
+          invalid: password.invalid && (password.dirty || password.touched),
+          valid: password.valid && (password.dirty || password.touched)
+        }"
+      />
+    </div>
+
+    <button type="submit" [disabled]="loginForm.invalid" class="button success" style="margin-bottom: 10px;">
+      <span *ngIf="loginForm.invalid">Login</span>
+      <span *ngIf="loginForm.valid">Now Click Here To Login</span>
+    </button>
+  </form>
+</div>

@@ -1,0 +1,91 @@
+<form class="form" [formGroup]="newTeacherForm" (ngSubmit)="save()">
+  <h2 class="form-title">Adding New Teacher</h2>
+  <div class="control">
+    <label for="name" class="label">
+      <span>Name</span>
+
+      <div class="info danger" *ngIf="n.invalid && (n.dirty || n.touched)">
+        <div *ngIf="n.errors?.required">
+          Name is required
+        </div>
+      </div>
+    </label>
+    <input type="text" formControlName="name" required id="name" [ngClass]="{'invalid': n.invalid && (n.dirty || n.touched), 'valid': n.valid && (n.dirty || n.touched)}" />
+  </div>
+  <div class="control">
+    <label for="email" class="label">
+      <span>Email</span>
+      <div class="info danger" *ngIf="e.invalid && (e.dirty || e.touched)">
+        <div *ngIf="e.errors?.required">
+          Email is required
+        </div>
+      </div>
+    </label>
+    <input type="email" formControlName="email" required id="email" [ngClass]="{'invalid': e.invalid && (e.dirty || e.touched), 'valid': e.valid && (e.dirty || e.touched)}" />
+  </div>
+  <div formArrayName="contacts">
+    <div class="label">
+      <span>Telephone Numbers</span>
+      <div
+        class="info danger"
+        *ngIf="
+          newTeacherForm.invalid &&
+          (newTeacherForm.dirty || newTeacherForm.touched)
+        "
+      >
+        <div *ngIf="newTeacherForm.errors?.contactsLength">
+          Provide at least one (1) telephone number.
+        </div>
+      </div>
+    </div>
+    <button type="button" (click)="addControl()">Add Contact</button>
+
+    <div *ngFor="let control of contacts.controls; let i = index">
+      <div class="control">
+        <label class="label">
+          <span>Contact No: {{ i + 1 }}</span>
+
+          <div
+            class="info danger"
+            *ngIf="control.invalid && (control.touched || control.dirty)"
+          >
+            <div *ngIf="control.hasError('required')">
+              Provide a valid telephone
+            </div>
+          </div>
+        </label>
+        <input type="tel" [formControlName]="i" required [ngClass]="{'invalid': control.invalid && (control.dirty || control.touched), 'valid': control.valid && (control.dirty || control.touched)}" />
+      </div>
+    </div>
+  </div>
+  <div class="control">
+    <label for="password" class="label">
+      <span>Password</span>
+      <div class="info danger" *ngIf="p.invalid && (p.dirty || p.touched)">
+        <div *ngIf="p.errors?.required">
+          Password is required
+        </div>
+      </div>
+    </label>
+    <input type="password" formControlName="password" required id="password" [ngClass]="{'invalid': p.invalid && (p.dirty || p.touched), 'valid': p.valid && (p.dirty || p.touched)}" />
+  </div>
+
+  <div class="control">
+    <label for="cp" class="label">
+      <span>Confirm Password</span>
+      <div
+        class="info danger"
+        *ngIf="
+          newTeacherForm.invalid && (newTeacherForm.dirty || newTeacherForm.touched) && p.touched && (cp.touched || cp.dirty)
+        "
+      >
+        <div *ngIf="newTeacherForm.errors?.confirmPassword">
+          Passwords mismatch
+        </div>
+      </div>
+    </label>
+    <input type="password" formControlName="confirmPassword" id="cp" [ngClass]="{'invalid': newTeacherForm.invalid && (newTeacherForm.dirty || newTeacherForm.touched) && p.touched && (cp.touched || cp.dirty), 'valid': newTeacherForm.valid && (newTeacherForm.dirty || newTeacherForm.touched) && p.touched && (cp.touched || cp.dirty)}"/>
+  </div>
+
+  <button class="e-btn" type="submit" [disabled]="newTeacherForm.invalid">Save Teacher</button>
+</form>

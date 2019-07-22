@@ -1,0 +1,48 @@
+<header class="main-header">
+  <!-- <div class="brand"><a href="">Eden Project</a></div> -->
+  <ul class="main-menu">
+    <li>
+      <a [routerLink]="['/']" routerLinkActive="active">Dashboard</a>
+    </li>
+    <li>
+      <a [routerLink]="['/students']" routerLinkActive="active">Students</a>
+    </li>
+    <li>
+      <a [routerLink]="['/subjects']" routerLinkActive="active">Subjects</a>
+    </li>
+    <li>
+      <a [routerLink]="['/time-table']" routerLinkActive="active">Time Table</a>
+    </li>
+    <li>
+      <a [routerLink]="['/teachers']" routerLinkActive="active">Teachers</a>
+    </li>
+    <li>
+      <a [routerLink]="['/accounts']" routerLinkActive="active">Accounts</a>
+    </li>
+    <li>
+      <a [routerLink]="['/users']" routerLinkActive="active">Users</a>
+    </li>
+  </ul>
+  <div class="account">
+    <ul>
+      <li>
+        <a class="user" *ngIf="auth.verifyToken()">{{
+          auth.decodeToken()?.email
+        }}</a>
+      </li>
+      <li>
+        <a (click)="auth.logout()" class="logout-btn" *ngIf="auth.verifyToken()"
+          >Logout</a
+        >
+      </li>
+      <li>
+        <a
+          class="login-btn"
+          [routerLink]="['/login']"
+          *ngIf="!auth.verifyToken()"
+          >Login</a
+        >
+      </li>
+    </ul>
+  </div>
+</header>

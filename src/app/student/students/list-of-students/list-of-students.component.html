@@ -1,0 +1,54 @@
+<form [formGroup]="studentSearch">
+  <div class="control">
+    <input
+      type="search"
+      name="name"
+      id="name"
+      formControlName="name"
+      placeholder="Enter a student's name..."
+    />
+  </div>
+</form>
+<hr class="hr" />
+
+<ul class="list" *ngIf="students$ | async as list; else noStudentFound">
+  <li
+    *ngFor="let student of list.students; let i = index"
+    class="list-item"
+    (mouseover)="selected = student._id"
+    [ngClass]="{ selectedBg: selected === student._id }"
+  >
+    <span class="name">{{ student?.name }}</span>
+    <span class="actions" *ngIf="selected === student._id">
+      <a class="yellow" [routerLink]="[student._id]">View</a>
+      <a
+        class="blue"
+        [routerLink]="['/accounts', 'pay', student._id]"
+        style="width: 100px;"
+        >Make Payment</a
+      >
+      <a class="green" [routerLink]="[student._id, 'register']">Register</a>
+    </span>
+  </li>
+</ul>
+<ng-template #noStudentFound>
+  <h5>No Student Found</h5>
+</ng-template>
+
+<div class="pagination" *ngIf="students$ | async as list">
+  <button
+    class="previous"
+    (click)="gotoPage(list.prevPage)"
+    [disabled]="!list?.hasPrevPage"
+  >
+    Previous
+  </button>
+  <button class="current">{{ list?.currentPage }}</button>
+  <button
+    class="next"
+    (click)="gotoPage(list.nextPage)"
+    [disabled]="!list?.hasNextPage"
+  >
+    Next
+  </button>
+</div>

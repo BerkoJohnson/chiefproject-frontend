@@ -1,0 +1,27 @@
+<div class="details" *ngIf="teacher">
+  <div class="table">
+    <h5 class="title">Subjects</h5>
+    <table>
+      <thead>
+        <tr>
+          <th>Title</th>
+          <th>Periods</th>
+          <!-- <th>Date</th> -->
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let subject of teacher.subjects; index as j">
+          <td>{{ subject.title }}</td>
+         <td>
+            <ul>
+              <li *ngFor="let period of subject.periods">
+                {{ period.day }}s @ {{period.time}}
+              </li>
+            </ul>
+          </td>
+           <!-- <td>{{ registration.createdAt | date: "fullDate" }}</td> -->
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
